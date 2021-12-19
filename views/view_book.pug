@@ -1,0 +1,21 @@
+doctype html
+
+head
+    title Look Inna Book: Book Details
+
+body
+    include head.pug
+    h3 #{rows[0].title}
+    div.addToBasket
+        form(action="/addToBasket" method="GET")
+            input(type="hidden" name="ISBN" value=rows[0].isbn)
+            button(type="submit" name="addToBasket" value=rows[0].isbn) Add to Basket
+    p Title: #{rows[0].title}
+    p Author: #{rows[0].author}
+    p Genre: #{rows[0].genre}
+    p Price: #{rows[0].price}
+    p Quantity left: #{rows[0].stock}
+    p Number of Pages: #{rows[0].page_count}
+    p Publication Date: #{rows[0].publication_date}
+    p ISBN: #{rows[0].isbn}
+    p Publisher: #{rows[0].publisher_name}

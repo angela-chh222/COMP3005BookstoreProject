@@ -1,0 +1,19 @@
+doctype html
+head
+    title Look In a Book: Search
+
+body
+    include head.pug
+    h3 Search for a book
+    h4 #{prompt}
+    .search
+        form(action='/searchBook' method='POST')
+            div
+                input(type='text' name='title' placeholder=' Search by title...')
+            div
+                input(type='text' name='genre' placeholder=' Search by genre...')
+            div
+                input(type='text' name='author' placeholder=' Search by author...')
+            div
+                input(type='text' name='ISBN' placeholder=' Search by ISBN...')
+            button(type='submit' name='search') Search

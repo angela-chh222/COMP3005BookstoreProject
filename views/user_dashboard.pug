@@ -1,0 +1,76 @@
+doctype html
+
+head
+    title Look Inna Book: Account Dashboard
+
+
+body
+    h3 Welcome to your user dashboard!
+    table(style='width:750px' border='1')
+        tr
+            th
+                .logout
+                    form(action='/logout' method='GET')
+                        button(type='submit' name='logout') Click here to logout
+            th
+                .viewPastOrder
+                    form(action='/viewPastOrders' method='GET')
+                        button(type='submit' name='search') View past orders
+            th
+                .searchByOrderNumber
+                    form(action='/searchByOrderNumber' method='GET')
+                        button(type='submit' name='searchByOrderNumber') Search by Order number
+            th
+                .searchByTrackingNumber
+                    form(action='/searchByTrackingNumber' method='GET')
+                        button(type='submit' name='searchByTrackingNumber') Search by Tracking number
+    br
+    .search
+        form(action='/searchBook' method='POST')
+            div
+                input(type='text' name='title' placeholder=' Search by title...')
+                input(type='text' name='genre' list='genre' placeholder=' Genre...')
+                datalist#genre
+                   option Historical
+                   option Fantasy
+                   option Fiction
+                   option Sci-Fic
+                   option Romance
+                   option Biography
+                input(type='text' name='author' placeholder=' Search by author...')
+                input(type='text' name='ISBN' placeholder=' Search by ISBN...')
+            button(type='submit' name='search') Search
+    .ordersList
+    h4 Here's what's in your basket right now:
+    table(style='width:750px' border='1')
+        tr
+            td
+                .results
+                    if rowCount > 0
+                        form(action='/checkout' method='POST')
+                            table(style='width:600px' border='1')
+                                tr
+                                    th
+                                        p Title
+                                    td
+                                        p Price
+                                    td
+                                        p Order quantity
+                                    th
+                                        p Stock number
+                                each val, index in rows
+                                    tr
+                                        th
+                                            a(href='/viewBook?ISBN=' + val.isbn) #{val.title}
+                                        td
+                                            p $#{val.price}
+                                        td
+                                            input(type='number' name=val.isbn value= val.quantity min='0' max=val.stock)
+                                        td
+                                            p #{val.stock}
+                                        th
+                                            a(href='/deleteBookInBasket?ISBN=' + val.isbn) Delete
+                            div
+                            button(type='submit' name='checkout') Checkout
+                    else if rowCount == 0
+                        p No books found

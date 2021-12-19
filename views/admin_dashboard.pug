@@ -1,0 +1,91 @@
+doctype html
+
+head
+    title Look Inna Book: Account Dashboard
+
+body
+    h3 Welcome to the admin dashboard!
+    table(style='width:700px' border='1')
+        tr
+            th
+                .logout
+                    form(action='/logout' method='GET')
+                        button(type='submit' name='logout') Click here to logout
+            th
+                .searchByOrderNumber
+                    form(action='/searchByOrderNumber' method='GET')
+                        button(type='submit' name='searchByOrderNumber') Search by Order number
+            th
+                .searchByTrackingNumber
+                    form(action='/searchByTrackingNumber' method='GET')
+                        button(type='submit' name='searchByTrackingNumber') Search by Tracking number
+            th
+                .viewReports
+                        form(action='/viewReports' method='GET')
+                            button(type='submit' name='reports') View reports
+        tr
+            th
+                .addNewBook
+                    form(action='/addBook' method='GET')
+                        button(type='submit' name='addBook') Add a new book
+            th
+                .removeBook
+                    form(action='/removeBook' method='GET')
+                        button(type='submit' name='removeBook') Remove a book
+            th
+                .addPublisher
+                    form(action='/addPublisher' method='GET')
+                        button(type='submit' name='addPublisher') Add a publisher
+    .search
+        form(action='/adminSearchBook' method='POST')
+            div
+                input(type='text' name='title' placeholder=' Search by title...')
+                input(type='text' name='genre' list='genre' placeholder=' Genre...')
+                datalist#genre
+                   option Historical
+                   option Fantasy
+                   option Fiction
+                   option Sci-Fi
+                   option Romance
+                   option Horror
+                   option Mystery
+                   option Non-Fiction
+                input(type='text' name='author' placeholder=' Search by author...')
+                input(type='text' name='ISBN' placeholder=' Search by ISBN...')
+            button(type='submit' name='search') Search
+    .searchresults
+    if rowCount > 0
+        table(style='width:700px' border='1')
+            tr
+                th
+                    p Title
+                td
+                    p Publisher
+                td
+                    p Author
+                td
+                    p Genre
+                td
+                    p ISBN
+                td
+                    p price
+                th
+                    p Stock number
+            each val, index in rows
+                tr
+                    th
+                        p #{val.title}
+                    td
+                        p #{val.publisher_name}
+                    td
+                        p #{val.author}
+                    td
+                        p #{val.genre}
+                    td
+                        p #{val.isbn}
+                    td
+                        p #{val.price}
+                    td
+                        p #{val.stock}
+    else if rowCount == 0
+        p No books found

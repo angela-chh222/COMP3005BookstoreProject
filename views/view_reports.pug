@@ -1,0 +1,38 @@
+doctype html
+
+head
+    title Look Inna Book: Review Reports
+
+body
+    include admin_head.pug
+    h3 View Report
+    h4 #{prompt}
+    .reports
+        table(style='width:750px' border='1')
+            tr
+                td
+                    p Total sales: $#{totalSales}
+                td
+                    p Total amount paid to publishers: $#{totalPayment}
+                td
+                    p Total profit: $#{profit}
+            
+
+        p Sales per author:
+        if rowCountByAuthor > 0
+            table(style='width:500px' border='1')
+                each val, index in salesByAuthor
+                    tr
+                        td
+                            p #{val.author}:
+                        td
+                            p $#{val.sale_total}
+        p Sales per genre:
+        if rowCountByGenre > 0
+            table(style='width:500px' border='1')
+                each val, index in salesByGenre
+                    tr
+                        td
+                            p #{val.genre}:
+                        td
+                            p $#{val.sale_total}

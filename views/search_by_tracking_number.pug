@@ -1,0 +1,30 @@
+doctype html
+
+head
+    title Search by Tracking_number: Search Results
+
+body
+    //include head.pug
+    a(href=dashboard) Home
+    h3 #{prompt}
+    .search
+        form(action='/searchByTrackingNumber' method='POST')
+            div
+                p Please fill in your tracking number:
+                input(type='text' name='tracking_number' placeholder=' Search by tracking_number')
+            button(type='submit' name='searchByTrackingNumber') Search
+    .results
+    if rowCount > 0
+        p Tracking number: #{tracking_number}
+        p Order date: #{rows[0].order_date}
+        p Order status: #{rows[0].tracking_status}
+        table(style='width:600px' border='1')
+            each val, index in rows
+                tr
+                    td
+                      a(href='/viewBook?ISBN=' + val.isbn) #{val.title} 
+                    td
+                      p Author: #{val.author}
+
+    else if rowCount == 0
+        p No books found

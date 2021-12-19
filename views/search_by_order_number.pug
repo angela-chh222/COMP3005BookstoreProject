@@ -1,0 +1,30 @@
+doctype html
+
+head
+    title Search by Order_number: Search Results
+
+body
+    //include head.pug
+    a(href=dashboard) Home
+    h3 #{prompt}
+    .search
+        form(action='/searchByOrderNumber' method='POST')
+            div
+                p Please fill in your order number:
+                input(type='text' name='order_number' placeholder=' Search by order_number')
+            button(type='submit' name='searchByOrderNumber') Search
+    .results
+    if rowCount > 0
+        p Order number: #{order_number}
+        p Order date: #{rows[0].order_date}
+        p Order status: #{rows[0].tracking_status}
+        table(style='width:600px' border='1')
+            each val, index in rows
+                tr
+                    td
+                      a(href='/viewBook?ISBN=' + val.isbn) #{val.title} 
+                    td
+                      p Author: #{val.author}
+
+    else if rowCount == 0
+        p No books found

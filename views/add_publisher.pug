@@ -1,0 +1,21 @@
+doctype html
+head
+	title Add a publisher
+body
+	include admin_head.pug
+	h3 Add a publisher
+	h4 #{prompt}
+
+	div.addPublisher
+		form(action="/addPublisher" method="POST")
+			div
+				input(type="text" name="name" placeholder=" Name")
+			div
+				input(type="text" name="emailAddress" placeholder=" Email Address")
+			div
+				input(type="text" name="address" placeholder=" Address")
+			div
+				input(type="text" name="phoneNumber" placeholder=" Phone Number")
+			div
+				input(type="text" name="depositNumber" placeholder=" Bank Deposit Number")
+			button(type="submit") Add Publisher

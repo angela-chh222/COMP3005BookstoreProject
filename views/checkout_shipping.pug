@@ -1,0 +1,44 @@
+doctype html
+
+head
+    title Look Inna Book: Checkout
+
+body
+    include head.pug
+    h3 Checkout: Shipping and billing address
+    h4 #{prompt}
+    h3 Order total: $#{total}
+    table(style='width:600px' border='1')
+       tr
+            td
+                h4 Billing information:
+            td  
+                h4 Shipping Address:
+       tr
+           td  
+                p #{fullName}
+                p #{email_address}
+                p #{billing_address}
+                p #{billing_city}, #{billing_prov}
+                p #{billing_postal_code}
+                p #{phone_number}
+                p #{creditcard_type}: #{creditcard_number}
+           td
+
+                form(action='/updateShippingAddressCompleteOrder' method='POST')
+                    div
+                        p Tracking number:
+                        input(type='trackingNumber' name='trackingNumber' value=tracking_number placeholder='Tracking number')
+                    div
+                        p Full name:
+                        input(type='fullName' name='fullName' placeholder='Full name')
+                    div
+                        p Address:
+                        input(type='address' name='address' placeholder='Street address')
+                    div
+                        input(type='city' name='city' placeholder='City')
+                    div
+                        input(type='province' name='province' placeholder='Province/Territory')
+                    div
+                        input(type='postalCode' name='postalCode' placeholder='Postal code (no spaces)')
+                    button(type='submit' name='placeOrder') Place Order

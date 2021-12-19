@@ -1,0 +1,26 @@
+doctype html
+
+head
+  title Look Inna Book: Create an Account
+
+body
+    h2 New Admin Registration
+    h3 #{prompt}
+    form(action='/create_admin' method='POST')
+          div
+            input(type='text' name='email' placeholder='Email')
+          div
+            input(type='fullName' name='fullName' placeholder='Full name')
+          div
+            input(type='phoneNumber' name='phoneNumber' placeholder='Phone number')
+          div
+            input(type='address' name='address' placeholder='Street address')
+          div
+            input(type='postalCode' name='postalCode' placeholder='Postal code (no spaces)')
+          div
+            input(type='city' name='city' placeholder='City')
+          div
+            input(type='province' name='province' placeholder='Province/Territory')
+          div
+            input(type='password' name='password' placeholder='Password')
+          button(type='submit' name='signUp') Create Account
