@@ -1,0 +1,20 @@
+doctype html
+
+head
+  title Look Inna Book: Home Page
+
+body
+    h2 Welcome to Look Inna Book Bookstore!
+    h3 #{prompt}
+    h3 Please login below:
+    form(action='/user_dashboard' method='POST')
+          div
+            input(type='text' name='email' placeholder='Email')
+          div
+            input(type='password' name='password' placeholder='Password')
+          div
+            button(type='submit' name='enterLogin') Login
+    form(action='/signup' method='GET')
+        button(type='submit' name='signUp') Sign Up
+    form(action='/admin_signup' method='GET')
+        button(type='submit' name='adminSignUp') Add New Admin

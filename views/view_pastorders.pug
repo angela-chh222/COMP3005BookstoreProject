@@ -1,0 +1,46 @@
+head
+    title Look Inna Book: Search
+
+body
+    include head.pug
+    h3 Search for a book
+    h4 #{prompt}
+    .pastOrdersList
+    h4 Here's what's in your past orders:
+    table(style='width:750px')
+        .results
+            if rowCount > 0
+                table(style='width:700px' border='1')
+                    tr
+                        th
+                            p Order date:
+                        th
+                            p Order number:
+                        th
+                            p Order staturs:
+                        th
+                            p Tracking number:
+                        th
+                            p Title:
+                        th
+                            p Quantity:
+                        th
+                            p Price:
+                    each val, index in rows
+                        tr
+                            td
+                                p #{val.order_date}
+                            td
+                                p #{val.order_number}
+                            td
+                                p #{val.tracking_status}
+                            td
+                                p #{val.tracking_number}
+                            th
+                                a(href='/viewBook?ISBN=' + val.isbn) #{val.title}
+                            td
+                                p #{val.quantity}
+                            td
+                                p $#{val.price}
+            else
+                p No books found

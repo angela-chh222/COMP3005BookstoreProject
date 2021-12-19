@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+head
+    title Delete a book
+body
+    include admin_head.pug
+    h3 Find a book to delete
+    .search
+        form(action='/searchForDelete' method='POST')
+            div
+                input(type='text' name='title' placeholder=' Search by title...')
+                input(type='text' name='genre' placeholder=' Search by genre...')
+                input(type='text' name='author' placeholder=' Search by author...')
+                input(type='text' name='ISBN' placeholder=' Search by ISBN...')
+            button(type='submit' name='search') Search
+    .searchResults
+        if rowCount > 0
+            table(style='width:600px' border='1')
+                each val, index in rows
+                    tr
+                        th
+                            a(href='/viewBook?ISBN=' + val.isbn) #{val.title}
+                        td
+                            a(href='/deleteBook?ISBN=' + val.isbn) Delete
+        else
+            p No books found

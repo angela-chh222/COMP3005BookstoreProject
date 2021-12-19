@@ -1,0 +1,17 @@
+doctype html
+
+head
+    title Look Inna Book: Search Results
+
+body
+    include head.pug
+    h3 #{prompt}
+    .results
+    if rowCount > 0
+        each val, index in rows
+            div
+                a(href='/viewBook?ISBN=' + val.isbn) #{val.title} 
+                p Author: #{val.author}
+
+    else
+        p No books found
