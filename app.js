@@ -7,7 +7,7 @@ const port = 3000;
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const queries = require("./queries");
-const triggers = require("./triggers");
+//const triggers = require("./triggers");
 /* const { Client } = require('pg');
 
 const client = new Client({
