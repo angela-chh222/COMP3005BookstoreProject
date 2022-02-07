@@ -89,3 +89,15 @@ create table publisher_payment
     foreign key (order_number) references order_info
         on delete cascade
     );
+    
+create table store_book_order_info
+    (ISBN   varchar(13),
+    order_year  numeric(4),
+    order_month    numeric(2),
+	order_day	numeric(2),
+    order_quantity   numeric(3),
+    publisher_name  text,
+    publisher_percent numeric(8,2),
+    foreign key (publisher_name) references publisher
+        on delete cascade
+    );
